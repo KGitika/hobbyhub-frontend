@@ -1,78 +1,76 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import "./Dashboard.css";
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext.jsx';
+import { getSummary } from '../api/dashboard.js';
+import { getGroupRecommendations } from '../api/recommendations.js';
+import { getRecentActivities } from '../api/activities.js';
+import StatCard from '../components/StatCard.jsx';
+import RecommendationCard from '../components/RecommendationCard.jsx';
+import NavBar from '../components/NavBar.jsx';
+
+const defaultSummary = {
+  interestedHobbiesCount: 0,
+  joinedGroupsCount: 0,
+  upcomingEventsCount: 0,
+  newConnectionsCount: 0,
+};
 
 export default function Dashboard() {
-  const [userData, setUserData] = useState(null);
-  const [recommendations, setRecommendations] = useState([]);
+  const { user } = useAuth();
+
+  const [summary, setSummary] = useState(defaultSummary);
+  const [recs, setRecs] = useState([]);
+  const [activities, setActivities] = useState([]);
 
   useEffect(() => {
-    // Replace with your actual backend endpoints
-    const fetchData = async () => {
-      try {
-        const userRes = await axios.get("/api/dashboard/user");
-        const recsRes = await axios.get("/api/dashboard/recommendations");
+    getSummary()
+      .then((data) =>
+        setSummary({
+          interestedHobbiesCount: data?.interestedHobbiesCount ?? 0,
+          joinedGroupsCount: data?.joinedGroupsCount ?? 0,
+          upcomingEventsCount: data?.upcomingEventsCount ?? 0,
+          newConnectionsCount: data?.newConnectionsCount ?? 0,
+        })
+      )
+      .catch(() => setSummary(defaultSummary));
 
-        setUserData(userRes.data);
-        setRecommendations(recsRes.data);
-      } catch (error) {
-        console.error("Error fetching dashboard data:", error);
-      }
-    };
+    getGroupRecommendations()
+      .then((data) => setRecs(data ?? []))
+      .catch(() => setRecs([]));
 
-    fetchData();
+    getRecentActivities()
+      .then((data) => setActivities(data ?? []))
+      .catch(() => setActivities([]));
   }, []);
 
-  if (!userData) return <div className="dashboard-loading">Loading...</div>;
-
   return (
-    <div className="dashboard-container">
-      {/* Header */}
-      <header className="dashboard-header">
-        <div className="logo">
-          🎯 <span>HobbyHub</span>
-        </div>
-        <nav className="nav-menu">
-          <button className="active">Dashboard</button>
-          <button>Groups</button>
-          <button>Events</button>
-          <button>Profile</button>
-        </nav>
-      </header>
-
-      {/* Welcome Section */}
-      <section className="welcome-section">
-        <h2>Welcome back, {userData.name}! 👋</h2>
-        <div className="stats-cards">
-          <div className="stat-card purple">
-            <h3>{userData.joinedGroups}</h3>
-            <p>Joined Groups</p>
-          </div>
-          <div className="stat-card blue">
-            <h3>{userData.upcomingEvents}</h3>
-            <p>Upcoming Events</p>
-          </div>
-          <div className="stat-card indigo">
-            <h3>{userData.newConnections}</h3>
-            <p>New Connections</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Recommendations */}
-      <section className="recommend-section">
-        <h4>✨ Recommended for You</h4>
-        <p>Based on your interests and activity</p>
-        <div className="recommend-cards">
-          {recommendations.map((rec, i) => (
-            <div key={i} className="recommend-card">
-              <span className="emoji">{rec.emoji}</span>
-              <span className="label">{rec.label}</span>
-              <span className="match">{rec.matchPercentage}% match</span>
-            </div>
-          ))}
-        </div>
-      </section>
+    <div>
+      <NavBar />
+      <h2>Welcome back, {user?.name}! 👋</h2>
+      <div className="stat-grid">
+        <Link to="/hobbies" style={{ textDecoration: 'none' }}>
+          <StatCard label="Interested Hobbies" value={summary.interestedHobbiesCount} />
+        </Link>
+        <Link to="/groups" style={{ textDecoration: 'none' }}>
+          <StatCard label="Joined Groups" value={summary.joinedGroupsCount} />
+        </Link>
+        <Link to="/events" style={{ textDecoration: 'none' }}>
+          <StatCard label="Upcoming Events" value={summary.upcomingEventsCount} />
+        </Link>
+        <StatCard label="New Connections" value={summary.newConnectionsCount} />
+      </div>
+      <h3>Recommended for You</h3>
+      <div className="recs-grid">
+        {recs.map((r) => (
+          <RecommendationCard key={r.groupId} name={r.name} matchPct={r.matchPct} groupId={r.groupId} />
+        ))}
+      </div>
+      <h3>Recent Activity</h3>
+      <ul>
+        {activities.map((a) => (
+          <li key={a.id}>{a.text} — {a.age}</li>
+        ))}
+      </ul>
     </div>
   );
 }

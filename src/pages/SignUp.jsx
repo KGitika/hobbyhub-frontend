@@ -1,99 +1,50 @@
 import React, { useState } from 'react';
-import './SignUp.css';
-import logo from '../assets/react.svg';
+import { Link, useNavigate } from 'react-router-dom';
+import { signup } from '../api/auth.js';
+import NavBar from '../components/NavBar.jsx';
+import { useAuth } from '../context/AuthContext.jsx';
 
-export default function SignUp() {
-  const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-  });
+export default function Signup() {
+  const navigate = useNavigate();
+  const [form, setForm] = useState({ name: '', email: '', password: '', confirm: '' });
+  const [error, setError] = useState(null);
+  const { login } = useAuth();
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  function handleChange(e) {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  }
 
-  const handleSubmit = (e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
-    if (formData.password !== formData.confirmPassword) {
-      alert('Passwords do not match');
+    setError(null);
+    if (form.password !== form.confirm) {
+      setError('Passwords do not match');
       return;
     }
-    // Placeholder for sign-up logic
-    console.log('Sign up form submitted', formData);
-  };
+    try {
+      await signup({ name: form.name, email: form.email, password: form.password });
+      await login({ email: form.email, password: form.password });
+      navigate('/onboarding/interests');
+    } catch (err) {
+      setError(err.message);
+    }
+  }
 
   return (
     <div>
-      {/* Header */}
-      <header className="header">
-        <div className="header-logo">
-          <img src={logo} alt="HobbyHub Logo" />
-          HobbyHub
-        </div>
-        <a href="/signin" className="header-link">Sign In</a>
-      </header>
-
-      {/* Sign Up Form */}
-      <div className="signup-container">
-        <h2>Create Your Account</h2>
+      <NavBar />
+      <div className="auth-page">
+        <h2>Sign Up</h2>
+        {error && <div className="error">{error}</div>}
         <form onSubmit={handleSubmit}>
-          <label htmlFor="fullName">Full Name</label>
-          <input
-            type="text"
-            id="fullName"
-            name="fullName"
-            placeholder="Enter your full name"
-            value={formData.fullName}
-            onChange={handleChange}
-            required
-          />
-
-          <label htmlFor="email">Email Address</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Enter your email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Create a password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-
-          <label htmlFor="confirmPassword">Confirm Password</label>
-          <input
-            type="password"
-            id="confirmPassword"
-            name="confirmPassword"
-            placeholder="Re-enter your password"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            required
-          />
-
-          <button type="submit" className="signup-btn">
-            Sign Up
-          </button>
+          <input name="name" placeholder="Name" value={form.name} onChange={handleChange} required autoComplete="name" />
+          <input name="email" type="email" placeholder="Email" value={form.email} onChange={handleChange} required autoComplete="email" />
+          <input name="password" type="password" placeholder="Password" value={form.password} onChange={handleChange} required autoComplete="new-password" />
+          <input name="confirm" type="password" placeholder="Confirm Password" value={form.confirm} onChange={handleChange} required autoComplete="new-password" />
+          <button type="submit">Sign Up</button>
         </form>
-
-        <p>
-          Already have an account?{' '}
-          <a href="/signin">Sign in here</a>
-        </p>
+        <p>Already have an account? <Link to="/login">Login</Link></p>
       </div>
     </div>
   );
 }
-

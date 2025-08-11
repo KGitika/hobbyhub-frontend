@@ -1,0 +1,93 @@
+/* Styles for Groups page */
+.groups-page {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.group-section {
+  margin: 2rem 0;
+}
+
+.group-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--color-surface);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 0.5rem;
+}
+
+.group-card button {
+  background: var(--color-primary);
+  color: var(--color-surface);
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+}
+
+.group-info {
+  flex: 1;
+}
+
+.group-description {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 0.25rem;
+}
+
+.group-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.create-group-toggle {
+  background: var(--color-primary);
+  color: var(--color-surface);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  margin-top: 1rem;
+}
+
+.create-group-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 400px;
+  background: var(--color-surface);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 1rem;
+}
+
+.create-group-form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.create-group-form input,
+.create-group-form select,
+.create-group-form textarea {
+  margin-top: 0.25rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.create-group-form textarea {
+  resize: vertical;
+}
+
+.create-group-form button {
+  align-self: flex-start;
+  background: var(--color-primary);
+  color: var(--color-surface);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+}

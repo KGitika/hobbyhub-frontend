@@ -1,0 +1,37 @@
+{
+  "g_photo": {
+    "id": "g_photo",
+    "name": "Photography Circle",
+    "hobby": "Photography",
+    "description": "A friendly group for weekend photo walks.",
+    "isMember": true,
+    "upcomingEvents": [
+      { "id": "e1", "groupId": "g_photo", "title": "Golden Hour Walk", "dateIso": "2025-09-01T18:00:00Z", "location": "City Park", "isRsvped": true },
+      { "id": "e2", "groupId": "g_photo", "title": "Night Photography 101", "dateIso": "2025-09-10T20:00:00Z", "location": "Downtown", "isRsvped": false }
+    ]
+  },
+  "g_archery": {
+    "id": "g_archery",
+    "name": "Archery Club",
+    "hobby": "Archery",
+    "description": "Practice archery every weekend.",
+    "isMember": false,
+    "upcomingEvents": []
+  },
+  "g_swim": {
+    "id": "g_swim",
+    "name": "Swimming Group",
+    "hobby": "Swimming",
+    "description": "Casual swims and training.",
+    "isMember": false,
+    "upcomingEvents": []
+  },
+  "g_write": {
+    "id": "g_write",
+    "name": "Creative Writing",
+    "hobby": "Writing",
+    "description": "Write and share stories.",
+    "isMember": false,
+    "upcomingEvents": []
+  }
+}

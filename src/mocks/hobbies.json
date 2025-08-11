@@ -1,0 +1,7 @@
+[
+  { "id": "Photography", "name": "Photography", "description": "", "imageUrl": "" },
+  { "id": "Hiking", "name": "Hiking", "description": "", "imageUrl": "" },
+  { "id": "Cooking", "name": "Cooking", "description": "", "imageUrl": "" },
+  { "id": "Writing", "name": "Writing", "description": "", "imageUrl": "" },
+  { "id": "Swimming", "name": "Swimming", "description": "", "imageUrl": "" }
+]

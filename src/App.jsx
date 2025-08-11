@@ -1,27 +1,35 @@
-// src/App.jsx
-import React, { useState } from 'react';
-import Register from './pages/Register';
-import HobbySelector from './pages/HobbySelector';
+import React from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import Login from './pages/Login.jsx';
+import Signup from './pages/Signup.jsx';
+import HobbySelector from './pages/HobbySelector.jsx';
+import Dashboard from './pages/Dashboard.jsx';
+import GroupPage from './pages/GroupPage.jsx';
+import ProtectedRoute from './components/ProtectedRoute.jsx';
+import Hobbies from './pages/Hobbies.jsx';
+import Groups from './pages/Groups.jsx';
+import Events from './pages/Events.jsx';
+import Connections from './pages/Connections.jsx';
 
-function App() {
-    const [userId, setUserId] = useState(null);
-    const [hobbiesSelected, setHobbiesSelected] = useState(false);
-
-    return (
-        <div>
-            <h1>Welcome to HobbyHub</h1>
-            {!userId ? (
-                <Register onRegister={(id) => setUserId(id)} />
-            ) : !hobbiesSelected ? (
-                <HobbySelector
-                    userId={userId}
-                    onHobbiesSaved={() => setHobbiesSelected(true)}
-                />
-            ) : (
-                <h2>✅ Hobbies Saved! (Next: Show Groups)</h2>
-            )}
-        </div>
-    );
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+      <Route element={<ProtectedRoute allowOnboarding />}> 
+        <Route path="/onboarding/interests" element={<HobbySelector />} />
+      </Route>
+      <Route element={<ProtectedRoute />}>
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/groups" element={<Groups />} />
+        <Route path="/groups/:groupId" element={<GroupPage />} />
+        <Route path="/hobbies" element={<Hobbies />} />
+        <Route path="/events" element={<Events />} />
+        <Route path="/connections" element={<Connections />} />
+      </Route>
+      <Route path="*" element={<Navigate to="/login" replace />} />
+    </Routes>
+  );
 }
 
-export default App;
+

@@ -1,0 +1,153 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f9fafb;
+}
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Header */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background: linear-gradient(to right, #6a5acd, #7b68ee);
+  color: white;
+  padding: 14px 20px;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.logo span {
+  margin-left: 6px;
+}
+
+.nav-menu button {
+  background: none;
+  border: none;
+  color: white;
+  margin-left: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+
+.nav-menu button:hover,
+.nav-menu .active {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Welcome Section */
+.welcome-section {
+  width: 100%;
+  max-width: 900px;
+  padding: 30px 20px 20px;
+}
+
+.welcome-section h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.stats-cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.stat-card {
+  flex: 1;
+  min-width: 200px;
+  background: #ddd;
+  padding: 20px;
+  border-radius: 12px;
+  color: white;
+  text-align: center;
+  font-weight: 600;
+}
+
+.stat-card h3 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.stat-card p {
+  margin: 5px 0 0;
+  font-size: 14px;
+}
+
+.stat-card.purple {
+  background: linear-gradient(to right, #7b68ee, #6a5acd);
+}
+
+.stat-card.blue {
+  background: linear-gradient(to right, #4f46e5, #6366f1);
+}
+
+.stat-card.indigo {
+  background: linear-gradient(to right, #6366f1, #8b5cf6);
+}
+
+/* Recommendations */
+.recommend-section {
+  width: 100%;
+  max-width: 900px;
+  background: linear-gradient(to right, #f472b6, #ec4899);
+  border-radius: 16px;
+  padding: 20px;
+  color: white;
+  margin: 30px 0;
+}
+
+.recommend-section h4 {
+  font-size: 16px;
+  margin: 0 0 5px;
+}
+
+.recommend-section p {
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.recommend-cards {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.recommend-card {
+  flex: 1;
+  min-width: 180px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  color: white;
+}
+
+.recommend-card .emoji {
+  font-size: 24px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.recommend-card .label {
+  font-weight: 600;
+  display: block;
+}
+
+.recommend-card .match {
+  font-size: 13px;
+  opacity: 0.9;
+}

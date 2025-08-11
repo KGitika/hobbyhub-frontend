@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
-import { API_BASE_URL } from '../config';
+import { joinGroup } from '../api/groups.js';
 
 function JoinGroupButton({ groupId }) {
   const [joined, setJoined] = useState(false);
 
-  const joinGroup = async () => {
+  const join = async () => {
     try {
-      const res = await fetch(`${API_BASE_URL}/groups/${groupId}/join`, {
-        method: 'POST',
-      });
-      if (!res.ok) throw new Error('Failed to join group');
+      await joinGroup(groupId);
       setJoined(true);
     } catch (err) {
       console.error(err);
@@ -17,7 +14,7 @@ function JoinGroupButton({ groupId }) {
   };
 
   return (
-    <button onClick={joinGroup} disabled={joined}>
+    <button onClick={join} disabled={joined}>
       {joined ? 'Joined' : 'Join Group'}
     </button>
   );

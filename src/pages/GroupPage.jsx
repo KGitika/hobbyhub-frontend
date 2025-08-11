@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { API_BASE_URL } from '../config';
-import EventList from './EventList';
+import EventList from '../components/EventList';
 
 function GroupPage({ groupId }) {
   const [group, setGroup] = useState(null);

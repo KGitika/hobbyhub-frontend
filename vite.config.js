@@ -8,6 +8,12 @@ export default defineConfig({
   // environment provided by jsdom. Without this, React Testing Library
   // utilities that depend on the DOM (e.g. `render`) would throw
   // `ReferenceError: document is not defined` during tests.
+
+  // 👇 IMPORTANT for GitHub Pages project sites
+  // Must match your repo name exactly
+  base: '/hobbyhub-frontend/',
+
+  
   test: {
     environment: 'jsdom',
     // Extend Vitest's expect with DOM-specific matchers such as

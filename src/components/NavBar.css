@@ -1,0 +1,76 @@
+.navbar {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: var(--color-surface);
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo img {
+  height: 40px;
+  margin-right: 0.5rem;
+}
+
+.navbar h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-family: var(--font-heading);
+}
+
+/* Ensure logo image and text sit on the same line */
+.navbar-logo .logo-link {
+  display: flex;
+  align-items: center;
+  margin-left: 0;
+}
+
+
+.navbar a,
+.navbar span {
+  color: var(--color-surface);
+  margin-left: 1rem;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+.navbar a.active {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.navbar button {
+  color: var(--color-surface);
+  margin-left: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+}
+
+.navbar button:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar a,
+  .navbar span,
+  .navbar button {
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
+}

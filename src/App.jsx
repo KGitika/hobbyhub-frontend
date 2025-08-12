@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import Login from './pages/Login.jsx';
-import Signup from './pages/Signup.jsx';
+import Login from './pages/LogIn.jsx';
+import Signup from './pages/SignUp.jsx';
 import HobbySelector from './pages/HobbySelector.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import GroupPage from './pages/GroupPage.jsx';

@@ -9,7 +9,7 @@ import ProtectedRoute from './components/ProtectedRoute.jsx';
 import Hobbies from './pages/Hobbies.jsx';
 import Groups from './pages/Groups.jsx';
 import Events from './pages/Events.jsx';
-import Connections from './pages/Connections.jsx';
+// import Connections from './pages/Connections.jsx';
 
 export default function App() {
   return (
@@ -25,7 +25,7 @@ export default function App() {
         <Route path="/groups/:groupId" element={<GroupPage />} />
         <Route path="/hobbies" element={<Hobbies />} />
         <Route path="/events" element={<Events />} />
-        <Route path="/connections" element={<Connections />} />
+        {/* <Route path="/connections" element={<Connections />} /> */}
       </Route>
       <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>

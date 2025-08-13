@@ -19,7 +19,7 @@ export default function NavBar() {
     { to: '/hobbies', label: 'Hobbies' },
     { to: '/groups', label: 'Groups' },
     { to: '/events', label: 'Events' },
-    { to: '/connections', label: 'Connections' },
+    // { to: '/connections', label: 'Connections' },
   ];
 
   return (

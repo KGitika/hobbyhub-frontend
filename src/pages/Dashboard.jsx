@@ -12,7 +12,7 @@ const defaultSummary = {
   interestedHobbiesCount: 0,
   joinedGroupsCount: 0,
   upcomingEventsCount: 0,
-  newConnectionsCount: 0,
+  // newConnectionsCount: 0,
 };
 
 export default function Dashboard() {
@@ -29,7 +29,7 @@ export default function Dashboard() {
           interestedHobbiesCount: data?.interestedHobbiesCount ?? 0,
           joinedGroupsCount: data?.joinedGroupsCount ?? 0,
           upcomingEventsCount: data?.upcomingEventsCount ?? 0,
-          newConnectionsCount: data?.newConnectionsCount ?? 0,
+          // newConnectionsCount: data?.newConnectionsCount ?? 0,
         })
       )
       .catch(() => setSummary(defaultSummary));
@@ -57,7 +57,7 @@ export default function Dashboard() {
         <Link to="/events" style={{ textDecoration: 'none' }}>
           <StatCard label="Upcoming Events" value={summary.upcomingEventsCount} />
         </Link>
-        <StatCard label="New Connections" value={summary.newConnectionsCount} />
+        {/* <StatCard label="New Connections" value={summary.newConnectionsCount} /> */}
       </div>
       <h3>Recommended for You</h3>
       <div className="recs-grid">

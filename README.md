@@ -1,22 +1,144 @@
-# React + Vite
+# HobbyHub Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React + Vite frontend for **HobbyHub** — discover new hobbies, join local groups, and plan events with fellow enthusiasts.
 
-Currently, two official plugins are available:
+This app talks to the HobbyHub Spring Boot API.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Live
 
-## API configuration
+- **Frontend (GitHub Pages):** https://kgitika.github.io/hobbyhub-frontend/
+- **Backend (Render):** [https://hobbyhub-backend-whhm.onrender.com](https://hobbyhub-backend-whhm.onrender.com/)
 
-Set the backend base URL through the `VITE_API_BASE_URL` environment variable. For local development you can create a `.env.development` file:
+> Routing is mounted at /hobbyhub-frontend on GitHub Pages. See Routing below.
+> 
+
+---
+
+## Features
+
+- User **signup** & **login** (JWT-based API)
+- **Onboarding** with interest selection
+- **Dashboard**: hobbies, groups, events *(Connections UI hidden for now)*
+- Browse **hobbies** & recommended **groups**
+- **Join groups**, view group details, **RSVP** to events
+
+> 🔕 Connections feature is temporarily hidden from Navbar and Dashboard (kept in code for a future release).
+> 
+
+---
+
+## Tech & Dependencies
+
+- React + Vite
+- React Router DOM
+- Axios
+- ESLint *(optional rule to catch case-sensitive import issues)*
+
+---
+
+## Environment Variables
+
+Create these at the repo root.
+
+**Development** (`.env.development`)
 
 ```
-VITE_API_BASE_URL=http://localhost:8000
+VITE_API_BASE_URL=http://localhost:8080
+
 ```
 
-When you run `npm run dev`, requests will be sent to this backend. Tests continue to use mocked APIs.
+**Production** (`.env.production`)
 
-## Expanding the ESLint configuration
+```
+VITE_API_BASE_URL=//hobbyhub-backend-whhm.onrender.com
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```
+
+## Project Scripts
+
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start Vite dev server ([http://localhost:5173](http://localhost:5173/)) |
+| `npm run build` | Build production bundle to `dist/` |
+| `npm run preview` | Preview the built app locally |
+| `npm run lint` | Run ESLint (if configured) |
+| `npm test` | Placeholder |
+
+## Local Development
+
+```
+
+# install deps
+npm install
+
+# run dev server
+npm run dev
+# open http://localhost:5173
+
+```
+
+The app will call the API at `VITE_API_BASE_URL` from `.env.development`.
+
+## Backend & CORS (Render)
+
+The backend enables CORS for:
+
+- `http://localhost:5173` (dev)
+- `http://127.0.0.1:5173` (dev alt)
+- `https://kgitika.github.io` (Pages)
+
+Public endpoints: `/auth/login`, `/auth/signup`
+
+Other routes require a JWT via `Authorization: Bearer <token>`.
+
+## Folder Structure (high level)
+
+> Case-sensitive imports matter because CI runs on Linux. We standardized names (e.g., Login.jsx, Signup.jsx, Navbar.jsx) and prefer extensionless imports like import Login from './pages/Login'.
+> 
+
+```
+
+src/
+  components/
+    Navbar.jsx
+    Navbar.css
+    ProtectedRoute.jsx
+    GroupList.jsx
+    HobbyList.jsx
+    HobbyTile.jsx
+    EventList.jsx
+    EventItem.jsx
+    RecommendationBox.jsx
+    RecommendationCard.jsx
+  pages/
+    Login.jsx
+    Signup.jsx
+    Dashboard.jsx
+    Hobbies.jsx
+    Groups.jsx
+    GroupPage.jsx
+    Events.jsx
+    HobbySelector.jsx
+    # (Connections components present but hidden in UI for now)
+  context/
+    AuthContext.jsx
+  App.jsx
+  main.jsx
+
+```
+
+## Contributing / TODO
+
+- Re-enable **Connections** UI when the feature is ready *(files retained)*
+- Add **E2E** & **Unit Tests**
+
+### Additional Feature Enhancements
+
+1. **Email Verification**
+2. **Password Strength Enforcement** — Require a minimum length, inclusion of special characters, numbers, and mixed case letters.
+3. **Event Location Integration** — Currently a plain string; integrate with Google Maps to allow users to select a location or choose from real-time search suggestions.
+4. **Event Deletion Functionality**
+5. **Connections Feature Introduction**
+6. **AI Integration** — Provide personalized recommendations.
+7. **Recent Activity Feed**
+8. **Profile Page** — Include profile settings, notification preferences, password change functionality, display picture upload, etc.

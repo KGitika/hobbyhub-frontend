@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { signup } from '../api/auth.js';
-import NavBar from '../components/NavBar.jsx';
+import NavBar from '../components/Navbar';
 import { useAuth } from '../context/AuthContext.jsx';
 
 export default function Signup() {

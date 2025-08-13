@@ -6,7 +6,7 @@ import { getGroupRecommendations } from '../api/recommendations.js';
 import { getRecentActivities } from '../api/activities.js';
 import StatCard from '../components/StatCard.jsx';
 import RecommendationCard from '../components/RecommendationCard.jsx';
-import NavBar from '../components/NavBar.jsx';
+import NavBar from '../components/Navbar';
 
 const defaultSummary = {
   interestedHobbiesCount: 0,

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getGroup, joinGroup, leaveGroup } from '../api/groups.js';
 import { rsvpEvent, unrsvpEvent } from '../api/events.js';
-import NavBar from '../components/NavBar.jsx';
+import NavBar from '../components/Navbar';
 import EventItem from '../components/EventItem.jsx';
 
 export default function GroupPage() {

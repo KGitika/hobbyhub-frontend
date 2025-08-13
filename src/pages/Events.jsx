@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import NavBar from '../components/NavBar.jsx';
+import NavBar from '../components/Navbar';
 import EventItem from '../components/EventItem.jsx';
 import { getEvents, rsvpEvent, unrsvpEvent, createEvent } from '../api/events.js';
 import { getGroups } from '../api/groups.js';

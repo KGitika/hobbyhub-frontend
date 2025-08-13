@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import NavBar from '../components/NavBar.jsx';
+import NavBar from '../components/Navbar';
 import { getGroups, joinGroup, createGroup, deleteGroup, leaveGroup } from '../api/groups.js';
 import { useAuth } from '../context/AuthContext.jsx';
 import './Groups.css';

@@ -4,7 +4,7 @@ import { getHobbies } from '../api/hobbies.js';
 import { getUserHobbies, updateUserHobbies } from '../api/users.js';
 import { useAuth } from '../context/AuthContext.jsx';
 import { useNavigate } from 'react-router-dom';
-import NavBar from '../components/NavBar.jsx';
+import NavBar from '../components/Navbar';
 import hobbyIcons from '../images/hobbyIcons.js';
 
 export default function HobbySelector() {

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
 import NavBar from '../components/NavBar.jsx';
-import './LogIn.css';
+import './Login.css';
 
 export default function Login() {
   const { login } = useAuth();
